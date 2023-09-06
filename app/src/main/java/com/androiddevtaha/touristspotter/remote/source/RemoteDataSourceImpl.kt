@@ -1,9 +1,18 @@
 package com.androiddevtaha.touristspotter.remote.source
 
+import com.androiddevtaha.touristspotter.entites.error.BadRequestException
+import com.androiddevtaha.touristspotter.entites.error.NoInternetException
+import com.androiddevtaha.touristspotter.entites.error.NotFoundException
+import com.androiddevtaha.touristspotter.entites.error.NullResultException
+import com.androiddevtaha.touristspotter.entites.error.ServerException
+import com.androiddevtaha.touristspotter.entites.error.UnknownException
 import com.androiddevtaha.touristspotter.remote.service.OpenTripMapApiService
 import com.androiddevtaha.touristspotter.repository.RemoteDataSource
 import com.androiddevtaha.touristspotter.repository.dto.allPlacesDtos.PlacesDto
 import com.androiddevtaha.touristspotter.repository.dto.placeDetailsDtos.PlaceDetailsDto
+import retrofit2.Response
+import java.io.IOException
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 class RemoteDataSourceImpl @Inject constructor(
@@ -17,28 +26,56 @@ class RemoteDataSourceImpl @Inject constructor(
         kinds: String,
         limit: Int
     ): PlacesDto {
-        return openTripMapApiService.getAllPlaces(
-            lonMin = lonMin,
-            lonMax = lonMax,
-            latMin = latMin,
-            latMax = latMax,
-            kinds = kinds,
-            limit = limit,
-        )
+        return wrapApiResponse {
+            openTripMapApiService.getAllPlaces(
+                lonMin = lonMin,
+                lonMax = lonMax,
+                latMin = latMin,
+                latMax = latMax,
+                kinds = kinds,
+                limit = limit,
+            )
+        }
     }
 
     override suspend fun getNearestPlaces(lon: Double, lat: Double, radius: Int): PlacesDto {
-        return openTripMapApiService.getNearestPlaces(
-            lon = lon,
-            lat = lat,
-            radius = radius,
-        )
+        return wrapApiResponse {
+            openTripMapApiService.getNearestPlaces(
+                lon = lon,
+                lat = lat,
+                radius = radius,
+            )
+        }
     }
 
     override suspend fun getPlaceDetails(id: Double): PlaceDetailsDto {
-        return openTripMapApiService.getPlaceDetails(
-            id = id,
-        )
+        return wrapApiResponse {
+            openTripMapApiService.getPlaceDetails(
+                id = id,
+            )
+        }
+    }
+
+    private suspend fun <T> wrapApiResponse(
+        request: suspend () -> Response<T>
+    ): T {
+        try {
+            val response = request()
+            if (response.isSuccessful) {
+                return response.body() ?: throw NullResultException("No data")
+            } else {
+                throw when (response.code()) {
+                    400 -> BadRequestException(response.message())
+                    404 -> NotFoundException("Not found")
+                    500 -> ServerException("Server error")
+                    else -> UnknownException("Unknown error")
+                }
+            }
+        } catch (e: UnknownHostException) {
+            throw NoInternetException("no Internet")
+        } catch (io: IOException) {
+            throw NoInternetException(io.message)
+        }
     }
 
 }
