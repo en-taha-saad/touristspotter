@@ -2,7 +2,7 @@ package com.androiddevtaha.touristspotter.repository.dto.placeDetailsDtos
 
 import com.google.gson.annotations.SerializedName
 
-data class PlaceDto(
+data class PlaceDetailsDto(
     @SerializedName("xid")
     val xid: String,
     @SerializedName("name")
