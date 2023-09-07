@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class GeometryDto(
     @SerializedName("coordinates")
-    val coordinates: List<Double>
+    val coordinates: List<Double>?
 )

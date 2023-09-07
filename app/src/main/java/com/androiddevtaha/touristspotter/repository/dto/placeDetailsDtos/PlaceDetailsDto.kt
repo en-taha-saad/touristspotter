@@ -4,19 +4,19 @@ import com.google.gson.annotations.SerializedName
 
 data class PlaceDetailsDto(
     @SerializedName("xid")
-    val xid: String,
+    val xid: String?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("address")
-    val address: AddressDto,
+    val address: AddressDto?,
     @SerializedName("kinds")
-    val kinds: String,
+    val kinds: String?,
     @SerializedName("point")
-    val point: PointDto,
+    val point: PointDto?,
     @SerializedName("wikipedia")
-    val wikipedia: String,
+    val wikipedia: String?,
     @SerializedName("preview")
-    val preview: PreviewDto,
+    val preview: PreviewDto?,
     @SerializedName("wikipedia_extracts")
-    val wikipediaExtracts: WikipediaExtractsDto
+    val wikipediaExtracts: WikipediaExtractsDto?
 )

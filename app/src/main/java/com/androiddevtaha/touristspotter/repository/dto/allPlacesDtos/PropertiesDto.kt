@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class PropertiesDto(
     @SerializedName("kinds")
-    val kinds: String,
+    val kinds: String?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("xid")
-    val xid: String
+    val xid: String?
 )

@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class PreviewDto(
     @SerializedName("source")
-    val source: String,
+    val source: String?,
     @SerializedName("height")
-    val height: Int,
+    val height: Int?,
     @SerializedName("width")
-    val width: Int
+    val width: Int?
 )

@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class WikipediaExtractsDto(
     @SerializedName("text")
-    val text: String
+    val text: String?
 )

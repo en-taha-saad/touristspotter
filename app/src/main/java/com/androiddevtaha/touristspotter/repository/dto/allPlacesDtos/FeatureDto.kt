@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class FeatureDto(
     @SerializedName("geometry")
-    val geometry: GeometryDto,
+    val geometry: GeometryDto?,
     @SerializedName("properties")
-    val properties: PropertiesDto
+    val properties: PropertiesDto?
 )
