@@ -1,4 +1,4 @@
-package com.androiddevtaha.touristspotter
+package com.androiddevtaha.touristspotter.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.androiddevtaha.touristspotter.ui.searchListScreen.SearchListScreen
 import com.androiddevtaha.touristspotter.ui.theme.TouristspotterTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,30 +18,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TouristspotterTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    SearchListScreen()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TouristspotterTheme {
-        Greeting("Android")
     }
 }
