@@ -64,10 +64,6 @@ android {
 }
 
 dependencies {
-    //    val dataStoreVersion = "1.0.0"
-    //    val firebaseBomVersion = "32.2.0"
-    //    val firebaseAuthVersion = "22.1.0"
-    //    val googleServiceAuthVersion = "20.6.0"
     val composeVersion = "1.0.1"
     val hiltVersion = "2.46.1"
     val navVersion = "2.6.0"
@@ -77,7 +73,6 @@ dependencies {
     val retrofitVersion = "2.9.0"
     val activityComposeVersion = "1.7.2"
     val coreKtxVersion = "1.10.1"
-    val junitVersion = "4.13.2"
     val junitExtVersion = "1.1.5"
     val testMonitorVersion = "1.6.1"
     val testngVersion = "6.9.6"
@@ -88,8 +83,6 @@ dependencies {
     val lottieComposeVersion = "6.1.0"
     val hiltNavigationComposeVersion = "1.1.0-alpha01"
     val gsonVersion = "2.10.1"
-    val appCompatVersion = "1.6.1"
-    val materialVersion = "1.9.0"
     val composeUITestManifestVVersion = "1.4.3"
     val lifecycleRuntimeKtxVersion = "2.6.1"
     val lifecycleViewModelComposeVersion = "2.6.1"
@@ -97,14 +90,8 @@ dependencies {
     val lifecycleRunTimeComposeVersion = "2.6.1"
     val lifecycleSavedStateVersion = "2.6.1"
     val lifecycleRuntimeTestingVersion = "2.6.1"
-    val pagingRuntimeVersion = "3.1.1"
-    val pagingComposeVersion = "3.2.0"
     val dagger2Version = "2.46.1"
-    val pagingCommonVersion = "3.2.0"
 
-
-    // data store
-    //    val dataStore = "androidx.datastore:datastore-preferences:$dataStoreVersion"
 
     // retrofit
     val retrofitConvertoer = "com.squareup.retrofit2:converter-gson:$retrofitConvertoerVersion"
@@ -119,7 +106,6 @@ dependencies {
     val activityCompose = "androidx.activity:activity-compose:$activityComposeVersion"
 
     // testing
-    val junit = "junit:junit:$junitVersion"
     val junitExt = "androidx.test.ext:junit-ktx:$junitExtVersion"
     val testMonitor = "androidx.test:monitor:$testMonitorVersion"
     val testng = "org.testng:testng:$testngVersion"
@@ -150,10 +136,6 @@ dependencies {
     // Gson
     val gson = "com.google.code.gson:gson:$gsonVersion"
 
-    // UI Dependencies
-    val appCompat = "androidx.appcompat:appcompat:$appCompatVersion"
-    val material = "com.google.android.material:material:$materialVersion"
-
     // Compose
     val composeBom = "androidx.compose:compose-bom:$composeVersion"
     val composeUI = "androidx.compose.ui:ui"
@@ -180,62 +162,57 @@ dependencies {
     val lifecycleRuntimeTesting =
         "androidx.lifecycle:lifecycle-runtime-testing:$lifecycleRuntimeTestingVersion"
 
-    //noinspection GradleDependency
-    val pagingRuntime = "androidx.paging:paging-runtime-ktx:$pagingRuntimeVersion"
-    val pagingCompose = "androidx.paging:paging-compose:$pagingComposeVersion"
-    val pagingCommon = "androidx.paging:paging-common-ktx:$pagingCommonVersion"
-
     // core + testing
     implementation(coreKtx)
+    implementation(junitExt)
+    implementation(testMonitor)
+    testImplementation(testng)
+    androidTestImplementation(testng)
+    androidTestImplementation(platform(composeBom))
+    androidTestImplementation(composeUITestJunit4)
+    debugImplementation(composeUITooling)
+    debugImplementation(composeUITestManifest)
+    debugImplementation(composeUITestManifestV)
+
     // Hilt
     implementation(hiltAndroid)
     kapt(hiltCompiler)
+    implementation(dagger)
+
     //gson
     implementation(gson)
+
     // Retrofit
     implementation(retrofit)
     implementation(retrofitConvertoer)
     implementation(okhttp3Logging)
     implementation(okhttp3)
-    //paging
-    implementation(pagingRuntime)
-    implementation(pagingCompose)
 
-    // core + testing
-    implementation(activityCompose)
     // hilt
     implementation(hiltNavigationCompose)
+
     //coil
     implementation(coilCompose)
     // accompanist
+
     implementation(accompanistSystemUiController)
     implementation(accompanistPermissions)
     implementation(accompanistWebView)
+
     // lottie
     implementation(lottieCompose)
+
     // compose
     implementation(platform(composeBom))
     implementation(composeUI)
     implementation(composeUIGraphics)
     implementation(composeUIToolingPreview)
     implementation(composeMaterial3)
-    androidTestImplementation(platform(composeBom))
-    androidTestImplementation(composeUITestJunit4)
-    debugImplementation(composeUITooling)
-    debugImplementation(composeUITestManifest)
-    debugImplementation(composeUITestManifestV)
+    implementation(activityCompose)
     implementation(composeFoundation)
     implementation(navCompose)
+
     // lifecycle
     implementation(lifecycleRuntimeKtx)
     implementation(lifecycleViewModelCompose)
-    //paging
-    implementation(pagingCommon)
-
-    // core + testing
-    implementation(junitExt)
-    implementation(testMonitor)
-    testImplementation(testng)
-    androidTestImplementation(testng)
-
 }
