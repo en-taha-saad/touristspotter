@@ -178,6 +178,7 @@ dependencies {
     implementation(hiltAndroid)
     kapt(hiltCompiler)
     implementation(dagger)
+    implementation(hiltNavigationCompose)
 
     //gson
     implementation(gson)
@@ -187,9 +188,6 @@ dependencies {
     implementation(retrofitConvertoer)
     implementation(okhttp3Logging)
     implementation(okhttp3)
-
-    // hilt
-    implementation(hiltNavigationCompose)
 
     //coil
     implementation(coilCompose)
@@ -215,4 +213,9 @@ dependencies {
     // lifecycle
     implementation(lifecycleRuntimeKtx)
     implementation(lifecycleViewModelCompose)
+    implementation(lifecycleViewModelKts)
+    implementation(lifecycleRunTimeCompose)
+    implementation(lifecycleSavedState)
+    testImplementation(lifecycleRuntimeTesting)
+
 }
