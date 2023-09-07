@@ -1,7 +1,7 @@
 package com.androiddevtaha.touristspotter.viewmodel
 
-import BaseUiEffect
-import BaseViewModel
+import com.androiddevtaha.touristspotter.viewmodel.base.BaseUiEffect
+import com.androiddevtaha.touristspotter.viewmodel.base.BaseViewModel
 import com.androiddevtaha.touristspotter.entites.places.Feature
 import com.androiddevtaha.touristspotter.usecase.GetPlacesUseCase
 import com.androiddevtaha.touristspotter.viewmodel.base.ErrorUiState
@@ -11,15 +11,15 @@ import javax.inject.Inject
 
 class PlacesViewModel @Inject constructor(
     private val getPlaces: GetPlacesUseCase
-) : BaseViewModel<SearchListUiState, BaseUiEffect>(SearchListUiState()) {
+) : BaseViewModel<SearchListUiState, UiEffect>(SearchListUiState()) {
 
-    private fun fetchNextPage(
+    fun fetchNextPage(
         lonMin: Double,
         lonMax: Double,
         latMin: Double,
         latMax: Double,
         kinds: String,
-        limit: Int = 20
+        limit: Int
     ) {
         _state.update { SearchListUiState(isLoading = true, error = null) }
         tryToExecute(
@@ -52,3 +52,4 @@ class PlacesViewModel @Inject constructor(
 
 }
 
+class UiEffect() : BaseUiEffect {}

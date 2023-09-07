@@ -1,12 +1,11 @@
+package com.androiddevtaha.touristspotter.viewmodel.base
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androiddevtaha.touristspotter.entites.error.NetworkException
 import com.androiddevtaha.touristspotter.entites.error.NoInternetException
 import com.androiddevtaha.touristspotter.entites.error.NullResultException
 import com.androiddevtaha.touristspotter.entites.error.PlacesException
-import com.androiddevtaha.touristspotter.viewmodel.base.ErrorUiState
-import com.androiddevtaha.touristspotter.viewmodel.base.NetworkErrorState
-import com.androiddevtaha.touristspotter.viewmodel.base.NullResultErrorState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow

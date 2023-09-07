@@ -14,6 +14,6 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.8.10" apply false
     id("com.google.dagger.hilt.android") version "2.46.1" apply false
     id("com.google.gms.google-services") version "4.3.15" apply false
-    kotlin("kapt") version "1.9.0"
+    kotlin("kapt") version "1.8.10"
 }
 val sourceCompatibility by extra(11)
