@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.Surface
 import com.androiddevtaha.touristspotter.ui.searchListScreen.SearchListScreen
 import com.androiddevtaha.touristspotter.ui.theme.TouristspotterTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

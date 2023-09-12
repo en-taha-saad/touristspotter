@@ -1,6 +1,5 @@
 package com.androiddevtaha.touristspotter.remote.service
 
-import com.androiddevtaha.touristspotter.BuildConfig
 import com.androiddevtaha.touristspotter.repository.dto.allPlacesDtos.PlacesDto
 import com.androiddevtaha.touristspotter.repository.dto.placeDetailsDtos.PlaceDetailsDto
 import retrofit2.Response
@@ -12,29 +11,29 @@ interface OpenTripMapApiService {
     @GET("{lang}/places/bbox")
     suspend fun getAllPlaces(
         @Path("lang") language: String = "en",
-        @Query("lon_min") lonMin: Double,
-        @Query("lon_max") lonMax: Double,
-        @Query("lat_min") latMin: Double,
-        @Query("lat_max") latMax: Double,
-        @Query("kinds") kinds: String,
-        @Query("limit") limit: Int,
-        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
+        @Query("lon_min") lonMin: Double? = null,
+        @Query("lon_max") lonMax: Double? = null,
+        @Query("lat_min") latMin: Double? = null,
+        @Query("lat_max") latMax: Double? = null,
+        @Query("kinds") kinds: String? = null,
+        @Query("name") name: String? = null,
+        @Query("limit") limit: Int? = null,
     ): Response<PlacesDto>
 
     @GET("{lang}/places/bbox")
     suspend fun getNearestPlaces(
         @Path("lang") language: String = "en",
-        @Query("lon") lon: Double,
-        @Query("lat") lat: Double,
-        @Query("radius") radius: Int,
-        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
+        @Query("lon") lon: Double? = null,
+        @Query("lat") lat: Double? = null,
+        @Query("kinds") kinds: String? = null,
+        @Query("name") name: String? = null,
+        @Query("radius") radius: Int? = null,
     ): Response<PlacesDto>
 
     @GET("{lang}/places/xid/{xid}")
     suspend fun getPlaceDetails(
         @Path("lang") language: String = "en",
-        @Path("xid") id: Double,
-        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
+        @Path("xid") id: Double? = null,
     ): Response<PlaceDetailsDto>
 
 

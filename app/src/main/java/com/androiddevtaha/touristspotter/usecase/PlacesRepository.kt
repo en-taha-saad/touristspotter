@@ -10,6 +10,7 @@ interface PlacesRepository {
         latMin: Double,
         latMax: Double,
         kinds: String,
+        name: String,
         limit: Int,
     ): Places
 
@@ -17,7 +18,9 @@ interface PlacesRepository {
         lon: Double,
         lat: Double,
         radius: Int,
-    ): Places
+        kinds: String,
+        name: String,
+        ): Places
 
     suspend fun getPlaceDetails(id: Double): PlaceDetails
 

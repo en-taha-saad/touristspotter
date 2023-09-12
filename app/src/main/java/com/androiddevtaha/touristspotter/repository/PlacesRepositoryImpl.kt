@@ -15,6 +15,7 @@ class PlacesRepositoryImpl @Inject constructor(
         latMin: Double,
         latMax: Double,
         kinds: String,
+        name: String,
         limit: Int
     ): Places {
         return remoteDataSource.getAllPlaces(
@@ -23,15 +24,22 @@ class PlacesRepositoryImpl @Inject constructor(
             latMin = latMin,
             latMax = latMax,
             kinds = kinds,
+            name = name,
             limit = limit
         ).toEntity()
     }
 
-    override suspend fun getNearestPlaces(lon: Double, lat: Double, radius: Int): Places {
+    override suspend fun getNearestPlaces(
+        lon: Double, lat: Double, radius: Int,
+        kinds: String,
+        name: String,
+    ): Places {
         return remoteDataSource.getNearestPlaces(
             lon = lon,
             lat = lat,
             radius = radius,
+            kinds = kinds,
+            name = name,
         ).toEntity()
     }
 

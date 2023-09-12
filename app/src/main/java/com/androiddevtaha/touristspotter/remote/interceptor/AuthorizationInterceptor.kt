@@ -23,6 +23,6 @@ class AuthorizationInterceptor @Inject constructor() : Interceptor {
     }
 
     private companion object {
-        private const val API_KEY = "api_key"
+        private const val API_KEY = "apikey"
     }
 }
